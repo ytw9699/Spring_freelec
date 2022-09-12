@@ -40,4 +40,6 @@ dependencies {
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile("org.springframework.security:spring-security-test")
+    implementation 'com.google.firebase:firebase-admin:9.0.0'
+    /*implementation("com.squareup.okhttp3:okhttp:4.2.2")*/
 }
