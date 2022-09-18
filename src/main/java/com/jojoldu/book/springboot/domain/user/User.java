@@ -32,7 +32,7 @@ public class User extends BaseTimeEntity {
     private String picture;
 
     @Enumerated(EnumType.STRING)//JPA로 데이터 베이스로 저장할 때 Enum 값을 어떤 형태로 저장할지를 결정, 기본적으로는 int 로 된숫자 저장
-    @Column(nullable = false)
+    @Column(nullable = false)//숫자로 저장되면 데이터 베이스로 확인할 때 그 값이 무슨 코드를 의마하는지 알 수 가 없다 그래서 문자열로 저장
     private Role role;
 
     @Builder

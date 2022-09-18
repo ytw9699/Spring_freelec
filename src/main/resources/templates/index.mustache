@@ -1,18 +1,24 @@
 {{>layout/header}}
 
-    <h1>스프링부트로 시작하는 웹 서비스 Ver.2</h1>
+    <h1>스프링부트로 시작하는 웹 서비스 ver 2.0</h1>
     <div class="col-md-12">
         <div class="row">
             <div class="col-md-6">
+                {{#userNickName}} <!--userName이 존재하는 경우-->
+                    <span id="user">{{userNickName}} 님이 로그인 중입니다.</span>
+                    <a href="/logout" class="btn btn-info active" role="button">로그아웃</a>
+                    <!--스프링시큐리티에서기본적으로제공하는로그아웃 URL임, SecurityConfig 클래스에서 URL을 변경할 순 있음-->
+                {{/userNickName}}
+
                 <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
-                {{#userName}}
-                    Logged in as: <span id="user">{{userName}}</span>
-                    <a href="/logout" class="btn btn-info active" role="button">Logout</a>
-                {{/userName}}
-                {{^userName}}
-                    <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
-                    <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>
-                {{/userName}}
+
+                {{^userNickName}} <!--userName이 존재하지 않는 경우-->
+                    <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">구글 로그인</a>
+                    <!--스프링 시큐리티에서 기본적으로 제공하는 로그인 URL, application-oauth.properties에 등록한 redirect-uri 값에 맞춰 자동으로 등록
+                    /oauth2/authorization 까지는 고정, Path만 google or naver 작성-->
+                    <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">네이버 로그인</a>
+                {{/userNickName}}
+
             </div>
         </div>
         <br>
