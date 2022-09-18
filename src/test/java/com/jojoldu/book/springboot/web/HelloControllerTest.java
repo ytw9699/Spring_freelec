@@ -21,13 +21,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /*테스트를 진행할 때 JUnit 에 내장된 실행자 외에 다른 실행자를 실행시킨다.
 여기서는 SpringRunner라는 스프링 실행자를 사용한다
 즉,스프링 부트 테스트와 JUnit 사이에 연결자 역할을한다*/
+/*@WebMvcTest는 Custom0Auth2Userservice를 스캔하지 않는다.
+@WebMvcTest는 WebSecuricyConfigurerAdapter, WebMvcConfigurer를 비롯한 @ControllerAdvice, @Controller를 읽는다.
+ 즉@Repository, @Service, @Component는 스캔 대상이 아니다. 그러니 SecurityConfig는 읽었지만, SecuricyConfig를 생성하기 위해 필요한
+        CusromOAuch2Use rServi ce는 읽 을수가 없다 에러가 발생하지 않게 스캔 대상에서 SecurityConfig 를 제거하자.*/
 @WebMvcTest(controllers = HelloController.class, excludeFilters = {
 @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = SecurityConfig.class)
 }
 )
 /*WebMvcTest는 여러 스프링 테스트 어노테이션 중, Web (Spring MVC)에 집증할 수 있는 어노테이션이다.
 선언할 경우 @Controller, @ControllerAdvice 등을 사용할 수 있다. 단, @Service, @Component, @Repository 등은 사용할 수 없다
-WebMvcTest의 경우 JPA 기능이 작동하지 않음,JPA 기능까지 한번에 테스트할 때는 @SpringBootTest와 TesrResrTemp lare을 사용하면 됨
+WebMvcTest의 경우 JPA 기능이 작동하지 않음,JPA 기능까지 한번에 테스트할 때는 @SpringBootTest와 restTemplate을 사용하면 된다.
 */
 public class HelloControllerTest {
 

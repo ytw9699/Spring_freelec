@@ -11,7 +11,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-
+    //스프링에서 인식될 수 있도록 WebMvcConfigurer 에 추가
     private final LoginUserArgumentResolver loginUserArgumentResolver;
 
     @Override

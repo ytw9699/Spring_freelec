@@ -47,7 +47,7 @@ public class PostsApiControllerTest {
 
     private MockMvc mvc;
 
-    @Before
+    @Before//매번 테스트가 시작되기 전에 MockMvc 인스턴스를 생성
     public void setup() {
         mvc = MockMvcBuilders
                 .webAppContextSetup(context)
@@ -61,7 +61,7 @@ public class PostsApiControllerTest {
     }
 
     @Test
-    @WithMockUser(roles="USER")
+    @WithMockUser(roles="USER")//인증된모의(가짜)사용자를 만들어서 사용, @WithMockUser가 MockMvc에서만 작동한다.
     public void Posts_등록된다() throws Exception {
         //given
         String title = "title";
@@ -75,7 +75,7 @@ public class PostsApiControllerTest {
         String url = "http://localhost:" + port + "/api/v1/posts";
 
         //when
-        mvc.perform(post(url)
+        mvc.perform(post(url)//MockMvc를 통해 API 를 테스트
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(new ObjectMapper().writeValueAsString(requestDto)))
                 .andExpect(status().isOk());
