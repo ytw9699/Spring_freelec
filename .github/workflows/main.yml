@@ -2,6 +2,8 @@
 env:  
   S3_BUCKET_NAME: freelec-builds
   PROJECT_NAME: Spring_freelec
+  CODE_DEPLOY_APP_NAME: freelec-springboot2-webservice
+  CODE_DEPLOY_GROUP_NAME: freelec-springboot2-webservice-group
   
 name: CI # (0) GitHub Action에서 보여질 이름을 지정합니다. 
 
